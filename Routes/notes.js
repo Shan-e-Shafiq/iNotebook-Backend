@@ -15,10 +15,10 @@ const validationArray = [
 notes_route.get('/fetchallnotes', fetchuser, async (req, res) => {
   try {
     const data = await NotesModel.find({ user: req.user.id })
-    res.json({ data: data, msg: 'This is notes' })
+    return res.json({ data: data, msg: 'This is notes' })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ message: "internal server error", error: error.message })
+    return res.status(500).json({ message: "internal server error", error: error.message })
   }
 })
 
@@ -41,10 +41,10 @@ notes_route.post('/addnotes', fetchuser, validationArray, async (req, res) => {
       tags: tags
     }
     const x = await NotesModel.create(data)
-    res.status(200).json(x)
+    return res.status(200).json(x)
   } catch (error) {
     console.log(error)
-    res.status(500).json({ message: "internal server error", error: error.message })
+    return res.status(500).json({ message: "internal server error", error: error.message })
   }
 })
 
@@ -80,7 +80,7 @@ notes_route.put('/updatenotes/:id', fetchuser, async (req, res) => {
     return res.status(200).json(queryResult)
   } catch (error) {
     console.log(error)
-    res.status(500).json({ message: "internal server error", error: error.message })
+    return res.status(500).json({ message: "internal server error", error: error.message })
   }
 })
 
