@@ -11,7 +11,10 @@ dotenv.config()
 // MIDDLEWARE
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+app.use(cors({
+  origin: 'https://i-notebook-frontend-one.vercel.app',
+  methods: ['GET', 'POST','PUT','DELETE']
+}))
 
 // AVAILABLE ROUTES
 app.use('/api/auth', auth_route)
