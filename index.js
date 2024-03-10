@@ -20,13 +20,14 @@ app.use(cors({
 app.use('/api/auth', auth_route)
 app.use('/api/notes', notes_route)
 app.get('/', async (req, res) => {
-  let db = await connect_to_database()
+  // let db = await connect_to_database()
   res.status(200).json({ 'msg': "SERVER IS UP", "db": db })
 })
 
 const port = process.env.PORT || 3000;
 
 app.listen(port, async () => {
+  console.log(await connect_to_database())
   console.log('Listening on port:' + port)
 })
 
