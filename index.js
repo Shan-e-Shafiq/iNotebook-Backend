@@ -5,10 +5,6 @@ import { notes_route } from "./Routes/notes.js";
 import dotenv from "dotenv"
 import cors from "cors";
 
-async function connect() {
-  console.log(await connect_to_database())
-}
-connect()
 
 const app = express()
 dotenv.config()
@@ -32,6 +28,7 @@ app.get('/', async (req, res) => {
 const port = process.env.PORT || 3000;
 
 app.listen(port, async () => {
+  console.log(await connect_to_database())
   console.log('Listening on port:' + port)
 })
 
